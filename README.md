@@ -1,70 +1,141 @@
-NeuralLux-Bots
-Lux AI Multi-Agent DQN
+NeuralLux-Bots: Lux AI Multi-Agent DQN
 Deep Reinforcement Learning for Multi-Agent Strategy in Lux AI Season 3
-
-Project Banner
 
 📌 Table of Contents
 Introduction
+
 Features
+
 Installation
+
 Usage
+
 Training Pipeline
+
 Architecture
+
 Results & Performance
+
 Contributing
+
 License
+
 🎯 Introduction
-This project implements Deep Q-Networks (DQN) for multi-agent reinforcement learning (MARL) in the Lux AI Challenge Season 3. The agents are trained to strategically navigate, collect resources, and compete effectively using a shared replay buffer and separate policy & target networks.
+This project implements Deep Q-Networks (DQN) for multi-agent reinforcement learning (MARL) tailored for the Lux AI Challenge Season 3. Our agents learn to navigate the environment strategically, gather resources, and compete effectively by sharing experience through a replay buffer and maintaining separate policy and target networks for stable training.
 
 ✨ Features
-✅ Multi-Agent Deep Q-Learning for strategic decision-making. ✅ Experience Replay using a shared replay buffer. ✅ Target & Policy Networks to stabilize training. ✅ Epsilon-Greedy Exploration for improved performance. ✅ Adaptive Model Sampling to prevent overfitting to one strategy. ✅ Log-Based Reward Tracking for debugging.
+✅ Multi-Agent Deep Q-Learning for complex strategic decision-making.
+
+✅ Experience Replay via a shared replay buffer to improve sample efficiency.
+
+✅ Target & Policy Networks to stabilize training and reduce divergence.
+
+✅ Epsilon-Greedy Exploration for balancing exploration and exploitation.
+
+✅ Adaptive Model Sampling to prevent overfitting on specific strategies.
+
+✅ Log-Based Reward Tracking for better debugging and performance monitoring.
 
 ⚙️ Installation
-1️⃣ Clone the Repository
+1️⃣ Clone the repository
+
+bash
+Copy
+Edit
 git clone https://github.com/your_username/LuxAI-MultiAgentDQN.git
 cd LuxAI-MultiAgentDQN
-2️⃣ Set Up Virtual Environment
+2️⃣ Set up a virtual environment
+
+bash
+Copy
+Edit
 python3 -m venv luxai_env
-source luxai_env/bin/activate  # On Windows use `luxai_env\Scripts\activate`
-3️⃣ Install Dependencies
+source luxai_env/bin/activate  # On Windows use: luxai_env\Scripts\activate
+3️⃣ Install dependencies
+
+bash
+Copy
+Edit
 pip install -r requirements.txt
-4️⃣ Install Lux AI Environment
+4️⃣ Install Lux AI environment
+
+bash
+Copy
+Edit
 pip install luxai_s3
 🚀 Usage
-Run the Environment with Your Bot
+Run the environment with your bot:
+
+bash
+Copy
+Edit
 luxai-s3 path/to/your/bot.py path/to/opponent/bot.py --output replay.json
-Train the Model
+Train the model:
+
+bash
+Copy
+Edit
 python train.py
-Evaluate Performance
+Evaluate performance:
+
+bash
+Copy
+Edit
 python evaluate.py --episodes 50
 🧠 Training Pipeline
-1️⃣ Observation Extraction: Converts raw environment state into agent-friendly representations. 2️⃣ Action Selection: Uses the policy network (with epsilon-greedy exploration). 3️⃣ Experience Storage: Saves (state, action, reward, next_state) tuples into a shared replay buffer. 4️⃣ Batch Training:
+1️⃣ Observation Extraction: Transform raw environment state into agent-friendly features.
+2️⃣ Action Selection: Select actions using the policy network with epsilon-greedy exploration.
+3️⃣ Experience Storage: Store tuples (state, action, reward, next_state) into a shared replay buffer.
+4️⃣ Batch Training:
 
-Samples a mini-batch from replay buffer.
-Updates policy network using TD-Target from target network.
-Optimizes using MSE loss for Q-values. 5️⃣ Target Network Update: Periodically syncs with policy network for stability.
+Sample mini-batches from the replay buffer.
+
+Compute Temporal Difference (TD) targets using the target network.
+
+Update policy network by minimizing mean squared error (MSE) loss of Q-values.
+5️⃣ Target Network Update: Periodically sync the target network weights with the policy network for training stability.
+
 🔧 Architecture
-📌 Multi-Agent DQN Structure:
+Multi-Agent DQN Structure
+Agent.py: Manages game interaction and reward computation.
 
-Agent.py -> Handles game interaction, reward computation
-DQN.py -> Deep Q-Network, Policy & Target Network
-ReplayBuffer.py -> Shared Experience Replay Buffer
-Train.py -> Training Loop
-Evaluate.py -> Performance Evaluation
-📌 Neural Network Model:
+DQN.py: Implements Deep Q-Networks, including policy and target networks.
 
-Fully Connected Layers with ReLU activation
-Q-Values Head: Predicts action-value estimates
-X, Y Coordinate Heads: Predicts (x, y) positions for sapping actions
+ReplayBuffer.py: Shared experience replay buffer for multi-agent learning.
+
+Train.py: Training loop and optimization logic.
+
+Evaluate.py: Performance evaluation and testing.
+
+Neural Network Model
+Fully connected layers with ReLU activations.
+
+Q-Values Head: Predicts action-value estimates for decision making.
+
+X, Y Coordinate Heads: Predict (x, y) positions for sapping or positional actions.
+
 📊 Results & Performance
-📌 Training Progress
-
 Episodes	Avg Reward	Win Rate (%)
 100	-5.3	45.2
 500	10.2	60.5
 1000	18.7	75.8
-📌 Sample Training Reward Curve Reward Curve (Replace path/to/reward_curve.png with your actual image!)
+
+Sample Training Reward Curve
+
+Replace path/to/reward_curve.png with your actual reward curve image.
+
+💡 Contributing
+We welcome contributions! To contribute:
+1️⃣ Fork the repository
+2️⃣ Create a feature branch (git checkout -b feature-name)
+3️⃣ Commit your changes with meaningful messages (git commit -m "Add feature")
+4️⃣ Push to your branch (git push origin feature-name)
+5️⃣ Open a pull request
+
+📜 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+
 
 💡 Contributing
 We welcome contributions! To contribute: 1️⃣ Fork the repository. 2️⃣ Create a feature branch. 3️⃣ Commit changes with meaningful messages. 4️⃣ Submit a pull request.
